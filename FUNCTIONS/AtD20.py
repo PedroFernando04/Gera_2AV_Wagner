@@ -10,5 +10,3 @@ def AtD20(qntDados):
     for i in range (0, qntDados):
         dadosMatriz.append(random.randint(0, 20))
     return dadosMatriz
-
-print(AtD20(6))
