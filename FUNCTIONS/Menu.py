@@ -1,3 +1,4 @@
+#verificar opçao valida no menu
 def intinput():
     while True:
         try:
@@ -13,6 +14,7 @@ def intinput():
         except ValueError:
             print("Digite um número inteiro válido.")
 
+ #Menu basico de Cadastro/login
 def menu():
     while True:
         print("\nSeu organizador e gerenciador de Ficha do personagem\n")
@@ -23,11 +25,11 @@ def menu():
         opc = intinput()
 
         if opc == 1:
-            print("Cadastro realizado!")
+            print("Cadastro realizado!") #vai entrar a função de Cadastro()
             return 1
         elif opc == 2:
-            print("Login efetuado!")
+            print("Login efetuado!")  #vai entrar a função de login()
             return 2
         elif opc == 3:
             print("Saindo...")
-            break  # Encerra o loop quando o usuário escolhe "Sair"
+            break 
