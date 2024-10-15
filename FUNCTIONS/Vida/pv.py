@@ -8,8 +8,8 @@ def pv(classe, Const):
     print("Ladino     |  8")
     print("Curandeiro |  8")
     print("Mago       |  6")
-    print("Bardo      |  d8")
-    print("Druida     |  d8")
+    print("Bardo      |  8")
+    print("Druida     |  8")
     
     if classe == 1:
         dvariavel = 10
