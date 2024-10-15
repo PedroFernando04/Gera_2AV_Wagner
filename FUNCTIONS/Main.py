@@ -5,10 +5,12 @@ from menu.Menu import menu
 # Menu principal do Gera Fichar
 while True:
     resposta = menu()
-    if resposta == 1:
-        usuarios = cadastrar()
-    elif resposta == 2:
-        if logar(usuarios):
-            print ('Feito')
-    else:
-        print ('obrigado por testar')
+    match resposta:
+        case 1:
+            usuarios = cadastrar()
+        case 2:
+            if logar(usuarios):
+                print ('Feito')
+        case 3:
+            print('obrigado por testar')
+            break
