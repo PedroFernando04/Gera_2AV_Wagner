@@ -1,30 +1,8 @@
-"""while (rerolagens >= 0) {
-        AtD20(dados, 6);
-        
-        printf("O resultado dos seus atributos foram:\n");
-        for (int j = 0; j < 6; j++) {
-            printf("Dado %d: %.2d\n", j + 1, dados[j]);
-        }
-        
-        printf("Deseja rerolar? Você tem %d rerolagens restantes (digite S ou N): ", rerolagens);
-        scanf(" %c", &reRolar);
-    
-        if (reRolar == 'S' || reRolar == 's') {
-            rerolagens--;
-            system("cls || clear");
-            printf("Classe selecionada: %s\n", nomeClasse);
-			printf("Atributo preferível: %s\n", atributoClasse);
-			printf("\n");
-            
-        } else {
-            break;
-        }"""
-
 import random
 import os
 
-def rolar_dados(qntDados, nome_classe, atributo_classe):
-    dadosMatriz = []
+def rolar_dados(qnt_dados, nome_classe, atributo_classe):
+    dados_matriz = []
 
     for re_rolagens in range(0, 3):
         
@@ -34,9 +12,9 @@ def rolar_dados(qntDados, nome_classe, atributo_classe):
             soma_re_rolagens = 0
 
         print("\nResultado dos dados: \n")
-        for j in range(0, qntDados):
-            dadosMatriz.append(random.randint(0, 20))
-            print(f"Dado {j + 1}: {dadosMatriz[j + soma_re_rolagens]}")
+        for j in range(0, qnt_dados):
+            dados_matriz.append(random.randint(0, 20))
+            print(f"Dado {j + 1}: {dados_matriz[j + soma_re_rolagens]}")
         
         print(f"\nDeseja rerolar? você tem {3 - re_rolagens} chances")
         print("1 - Sim\n2 - Não")
@@ -54,23 +32,16 @@ def rolar_dados(qntDados, nome_classe, atributo_classe):
                 os.system('cls')
                 break
         
-        if re_rolagens == 2:
+        if re_rolagens == 2 or rerolar == 2:
             print("Resultado final")
-            print(f"|D1 = [{dadosMatriz[0]}] | D2 = [{dadosMatriz[1]}] | D3 = [{dadosMatriz[2]}] |")
-            print(f"|D4 = [{dadosMatriz[3]}] | D5 = [{dadosMatriz[4]}] | D6 = [{dadosMatriz[5]}] |")
+            print(f"|D1 = [{dados_matriz[0]}] | D2 = [{dados_matriz[1]}] | D3 = [{dados_matriz[2]}] |")
+            print(f"|D4 = [{dados_matriz[3]}] | D5 = [{dados_matriz[4]}] | D6 = [{dados_matriz[5]}] |")
             break
 
-        if rerolar == 1:
+        else:
             os.system('cls')
             print(f"Classe selecionada: {nome_classe}")
             print(f"Atributo preferível: {atributo_classe}\n")
 
-        else:  
-            print("Resultado final")
-            print(f"|D1 = [{dadosMatriz[0]}] | D2 = [{dadosMatriz[1]}] | D3 = [{dadosMatriz[2]}] |")
-            print(f"|D4 = [{dadosMatriz[3]}] | D5 = [{dadosMatriz[4]}] | D6 = [{dadosMatriz[5]}] |")
-            break
 
-    return dadosMatriz
-#TESTE DA FUNÇÃO
-#print(rolar_dados(6, 'Guerreiro', 'Força'))
+    return dados_matriz
