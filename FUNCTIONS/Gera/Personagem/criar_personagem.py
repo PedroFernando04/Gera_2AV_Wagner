@@ -59,6 +59,7 @@ def criar_personagem():
             nome_classe = "Druida"
             atributo_classe = "Sabedoria"
 
+    print(f"Nome: {nome}")
     print(f"Classe selecionada: {nome_classe}")
     print(f"Atributo preferível: {atributo_classe}")
 
