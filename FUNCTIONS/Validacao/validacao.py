@@ -1,11 +1,19 @@
 #Validação de Emails
-def emailValido():
+def emailValido(users):
     while True:
         email = input('Digite um email Válido: ')
         if '@' in email:
             usuario, dominio = email.split('@', 1)
             if usuario and dominio and '.' in dominio:
-                return email
+            #verificar se o email ja está cadastrado
+                email_ja_cadastrado = False
+                for user in users:
+                    if email == user.email:
+                        print('Esse email já foi cadastrado.')
+                        email_ja_cadastrado = True
+                        break
+                if not email_ja_cadastrado:
+                    return email
             else:
                 print('Digite um email válido!')
         else:
