@@ -25,7 +25,7 @@ def pv(classe, Const):
     else:
         dvariavel = 8
 
-    dadovida = random.randint(0, dvariavel)
+    dadovida = random.randint(1, dvariavel)
 
     vida = dadovida + Const
 
