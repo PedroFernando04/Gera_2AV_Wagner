@@ -36,7 +36,6 @@ def pv(classe, Const):
     
     print(f"{dadovida}(dado de vida) + {Const} (Constituição)\n")
     print(f"Logo o PV do personagem é de: {vida}\n")
-    input("\n[Pressione qualquer tecla para seguir]\n")
 
     return vida
 #Teste da Função
