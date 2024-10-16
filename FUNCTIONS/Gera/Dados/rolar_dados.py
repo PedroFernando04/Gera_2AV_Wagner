@@ -13,7 +13,7 @@ def rolar_dados(qnt_dados, nome_classe, atributo_classe):
 
         print("\nResultado dos dados: \n")
         for j in range(0, qnt_dados):
-            dados_matriz.append(random.randint(0, 20))
+            dados_matriz.append(random.randint(1, 20))
             print(f"Dado {j + 1}: {dados_matriz[j + soma_re_rolagens]}")
         
         print(f"\nDeseja rerolar? você tem {3 - re_rolagens} chances")
