@@ -30,7 +30,7 @@ def criar_personagem():
     while True:
         try:
             classe = int(input("Informe o número referente a classe do seu personagem: "))
-            if classe < 1 or classe > 7:
+            if classe < 1 or classe > 6:
                 raise ValueError("Fora do intervalo")     
         except(ValueError):
             print("\nValor inválido!")
