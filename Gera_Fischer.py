@@ -14,9 +14,19 @@ while True:
     match resposta:
         case 1:
             usuarios = CadLog.cadastrar()
+            if usuarios:
+                print("E-mail cadastrado com sucesso!")
         case 2:
             if CadLog.logar(usuarios):
-                print ('Feito')
+                break
+            else:
+                input('\n[Pressione qualquer botão para voltar ao menu]\n[Tente fazer o login novamente]\n')
+                resposta
+                
         case 3:
-            print('obrigado por testar')
+            print('\nEncerrando o programa...\n\nFim\n')
             break
+
+#Login realizado com sucesso
+#iniciando o Gera
+
