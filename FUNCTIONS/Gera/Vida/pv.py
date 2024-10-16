@@ -11,10 +11,10 @@ def pv(classe, Const):
     print("Bardo      |  8")
     print("Druida     |  8")
     
-    if classe == 1:
+    if classe == 'Guerreiro':
         dvariavel = 10
 
-    elif classe == 4:
+    elif classe == 'Mago':
         dvariavel = 6
 
     else:
