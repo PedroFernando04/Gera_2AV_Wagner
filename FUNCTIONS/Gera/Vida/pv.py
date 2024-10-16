@@ -29,7 +29,7 @@ def pv(classe, Const):
 
     vida = dadovida + dvariavel
 
-    print(f"\n\nBaseado na classe de seu personagem, você tem direito a um dado de {dvariavel} lados\n")
+    print(f"Baseado na classe de seu personagem, você tem direito a um dado de {dvariavel} lados\n")
 
        
     print(f"Sua rolagem de um d{dvariavel} resultou em {dadovida}\n")
