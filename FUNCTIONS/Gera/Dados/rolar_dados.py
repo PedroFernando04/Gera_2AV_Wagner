@@ -33,9 +33,6 @@ def rolar_dados(qnt_dados, nome_classe, atributo_classe):
                 break
         
         if re_rolagens == 2 or rerolar == 2:
-            print("Resultado final")
-            print(f"|D1 = [{dados_matriz[0]}] | D2 = [{dados_matriz[1]}] | D3 = [{dados_matriz[2]}] |")
-            print(f"|D4 = [{dados_matriz[3]}] | D5 = [{dados_matriz[4]}] | D6 = [{dados_matriz[5]}] |")
             break
 
         else:
