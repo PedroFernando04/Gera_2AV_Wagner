@@ -12,7 +12,7 @@ def pv(classe, Const):
     print("Druida     |  8")
     
     #Despoluir tela
-    input("[Pressione qualquer tecla para seguir]")
+    input("\n[Pressione qualquer tecla para seguir]\n")
     os.system('cls')
 
     
