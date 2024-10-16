@@ -1,4 +1,5 @@
 from FUNCTIONS.Login.Validacao.validacao import emailValido, senhaValida, loginValido
+import os
 
 
 class Cadastro:
@@ -9,6 +10,7 @@ class Cadastro:
 usuarios = []
 
 def cadastrar ():
+    os.system('cls')
 
     print('\n[ CADASTRO ]\n')
     email = emailValido(usuarios)
@@ -18,6 +20,8 @@ def cadastrar ():
 
 
 def logar (users):
+    os.system('cls')
+    
     print('\n[ LOGIN ]\n')
     nome_login = input ('Digite seu Email: ')
     senha_login = input ('Digite sua senha: ')
@@ -25,6 +29,6 @@ def logar (users):
     if loginValido(nome_login, senha_login, users):
         return True
     else:
-        print('Usuário e senha inválida!')
+        print('\nUsuário e senha inválida!')
         return False
 
