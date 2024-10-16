@@ -11,7 +11,7 @@ usuarios = []
 def cadastrar ():
 
     print('\n[ CADASTRO ]\n')
-    email = emailValido()
+    email = emailValido(usuarios)
     senha = senhaValida()
     usuarios.append(Cadastro(email,senha))
     return usuarios
