@@ -33,10 +33,14 @@ def senhaValida():
 def loginValido(email, senha, usuarios):
     validacao = 0
     for i in range(0, len(usuarios)):
-        if email == usuarios[i].email and senha == usuarios[i].senha:
-            validacao += 1
-        if validacao > 0:
-            print('Usuário válido\n')
-            return True
-        else:
+        try:
+            if email == usuarios[i].email and senha == usuarios[i].senha:
+                validacao += 1
+                if validacao > 0:
+                    print('Usuário válido\n')
+                return True
+            else:
+                pass
+        except:
+            print ('Usuário e senha não encontrado')
             return False
