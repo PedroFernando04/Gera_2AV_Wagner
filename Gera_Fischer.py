@@ -9,6 +9,7 @@ from FUNCTIONS.Login.menu import Menu
 
 import os
 
+usuarios = None
 # Menu principal do Gera Fichar
 while True:
     resposta = Menu.menu()
@@ -18,15 +19,21 @@ while True:
             if usuarios:
                 print("E-mail cadastrado com sucesso!")
         case 2:
+            if not usuarios:
+                print ("Nenhum usuário cadastrado")
+                input('\n[Pressione qualquer botão para voltar ao menu]\n[Tente fazer o login novamente]\n')
+                continue
             if CadLog.logar(usuarios):
                 break
             else:
                 input('\n[Pressione qualquer botão para voltar ao menu]\n[Tente fazer o login novamente]\n')
-                resposta
+                
+
+
                 
         case 3:
             print('\nEncerrando o programa...\n\nFim\n')
-            break
+            exit()
 
 #Login realizado com sucesso
 
