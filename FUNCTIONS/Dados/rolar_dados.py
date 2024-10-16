@@ -72,5 +72,5 @@ def rolar_dados(qntDados, nome_classe, atributo_classe):
             break
 
     return dadosMatriz
-
-print(rolar_dados(6, 'Guerreiro', 'Força'))
+#TESTE DA FUNÇÃO
+#print(rolar_dados(6, 'Guerreiro', 'Força'))
