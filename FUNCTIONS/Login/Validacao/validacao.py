@@ -1,7 +1,7 @@
 #Validação de Emails
 def emailValido(users):
     while True:
-        email = input('Digite um email Válido: ')
+        email = input('\nDigite um email Válido: ')
         if '@' in email:
             usuario, dominio = email.split('@', 1)
             if usuario and dominio and '.' in dominio:
@@ -9,15 +9,15 @@ def emailValido(users):
                 email_ja_cadastrado = False
                 for user in users:
                     if email == user.email:
-                        print('Esse email já foi cadastrado.')
+                        print('\nEsse email já foi cadastrado.')
                         email_ja_cadastrado = True
                         break
                 if not email_ja_cadastrado:
                     return email
             else:
-                print('Digite um email válido!')
+                print('\nDigite um email válido!')
         else:
-            print ('Digite um email válido!')
+            print ('\nDigite um email válido!')
 
 #Validação da senha
 def senhaValida():
@@ -27,7 +27,7 @@ def senhaValida():
         if senha == senha2:
             return senha
         else:
-            print('Senhas não são igual, digite novamente elas\n')
+            print('Senhas não correspondentes, digite novamente\n')
 
 #Validação do login
 def loginValido(email, senha, usuarios):
