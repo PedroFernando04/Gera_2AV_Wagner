@@ -15,7 +15,7 @@ def pv(classe, Const):
     input("\n[Pressione qualquer tecla para seguir]\n")
     os.system('cls')
 
-    
+
     if classe == 'Guerreiro':
         dvariavel = 10
 
@@ -36,6 +36,7 @@ def pv(classe, Const):
     
     print(f"{dadovida}(dado de vida) + {Const} (Constituição)\n")
     print(f"Logo o PV do personagem é de: {vida}\n")
+    input("\n[Pressione qualquer tecla para seguir]\n")
 
     return vida
 #Teste da Função
