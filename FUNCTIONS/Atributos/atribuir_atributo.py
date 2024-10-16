@@ -1,61 +1,71 @@
-"""int atribuirAtributo(int numerodoDado, int *dadosatb, int *dadosUtilizados) {
-    if (dadosUtilizados[numerodoDado - 1]) {
-
-        return -1;
-    }
-    dadosUtilizados[numerodoDado - 1] = 1;// Marcar o dado como utilizado
-    return dadosatb[numerodoDado - 1];
-}"""
-
-def atribuir_atributo(numero_dado, dados_atb, dados_utilizados):
-    if dados_utilizados[numero_dado - 1]:
-        return -1
-    dados_utilizados[numero_dado - 1] = 1
-
-    return dados_atb[numero_dado - 1]
-
-#NOVA VERSÃO
-
-"""import os
+import os
 
 def atribuir_atributo(dados_matriz, nome_classe, atributo_classe):
     For = Des = Const = Int = Car = Sab = 0
-    for i in range (0, 6):
+    atributos = [For, Des, Const, Int, Car, Sab]
+
+    #Mostra os atributos atuais
+    for i in range (6):
+        
+        print(f"|D1 = [{dados_matriz[0]}] | D2 = [{dados_matriz[1]}] | D3 = [{dados_matriz[2]}] |")
+        print(f"|D4 = [{dados_matriz[3]}] | D5 = [{dados_matriz[4]}] | D6 = [{dados_matriz[5]}] |")
+
         print(f"\nOs atributos são:")
-        print(f"Força:        {For}", )
-        print(f"Destreza:     {Des}", )
-        print(f"Constituição: {Const}", )
-        print(f"Inteligência: {Int}", )
-        print(f"Carisma:      {Car}", )
-        print(f"Sabedoria:    {Sab}")
+        print(f"Força:        {atributos[0]}", )
+        print(f"Destreza:     {atributos[1]}", )
+        print(f"Constituição: {atributos[2]}", )
+        print(f"Inteligência: {atributos[3]}", )
+        print(f"Carisma:      {atributos[4]}", )
+        print(f"Sabedoria:    {atributos[5]}")
 
         print(f"Sua classe ({nome_classe}) prioriza ({atributo_classe})")
-
-        nome_atributo = {"FORÇA", "DESTREZA", "CONSTITUIÇÃO", "INTELIGÊNCIA", "CARISMA", "SABEDORIA"}
+        
+        nome_atributo = ["FORÇA", "DESTREZA", "CONSTITUIÇÃO", "INTELIGÊNCIA", "CARISMA", "SABEDORIA"]
+        
+        #Valida o dado selecionado
         while True:
             try:
-                atributo = int(input(f"\nPara o atributo {nome_atributo[i]}, qual número do dado você deseja vincular: "))
-                if atributo > 6 or atributo < 1:
+                dado_selecionado = int(input(f"\nPara o atributo {nome_atributo[i]}, qual número do dado você deseja vincular: "))
+                if dado_selecionado > 6 or dado_selecionado < 1:
                     raise ValueError("Fora do intervalo")
+                elif dados_matriz[dado_selecionado - 1] == "Utilizado":
+                    raise ValueError("Dado já utilizado!")
             except ValueError:
                 os.system('cls')
-                print("Valor inválido!")
+                print("Valor inválido ou dado já utilizado!")
+                print("Informe um dos dados presentes na tabela e que já não tenha sido utilizado!\n")
 
-                print("Resultado final")
                 print(f"|D1 = [{dados_matriz[0]}] | D2 = [{dados_matriz[1]}] | D3 = [{dados_matriz[2]}] |")
                 print(f"|D4 = [{dados_matriz[3]}] | D5 = [{dados_matriz[4]}] | D6 = [{dados_matriz[5]}] |")
 
                 print(f"\nOs atributos são:")
-                print(f"Força:        {For}", )
-                print(f"Destreza:     {Des}", )
-                print(f"Constituição: {Const}", )
-                print(f"Inteligência: {Int}", )
-                print(f"Carisma:      {Car}", )
-                print(f"Sabedoria:    {Sab}")
+                print(f"Força:        {atributos[0]}", )
+                print(f"Destreza:     {atributos[1]}", )
+                print(f"Constituição: {atributos[2]}", )
+                print(f"Inteligência: {atributos[3]}", )
+                print(f"Carisma:      {atributos[4]}", )
+                print(f"Sabedoria:    {atributos[5]}")
 
                 print(f"\nSua classe ({nome_classe}) prioriza ({atributo_classe})")  
             
             else: 
                 break
+            
+        #Atribui o dado ao atributo
+        atributos[i] = dados_matriz[dado_selecionado - 1]
+        dados_matriz[dado_selecionado - 1] = "Utilizado"
+        os.system('cls')
+
+
+    print(f"\nOs atributos são:")
+    print(f"Força:        {atributos[0]}", )
+    print(f"Destreza:     {atributos[1]}", )
+    print(f"Constituição: {atributos[2]}", )
+    print(f"Inteligência: {atributos[3]}", )
+    print(f"Carisma:      {atributos[4]}", )
+    print(f"Sabedoria:    {atributos[5]}")
+    return atributos
+        
 #TESTE DA FUNÇÃO
-atribuir_atributo([1,2,3,4,5,6], 'guerreiro', 'força')"""
+#Ordem do resultado --> atributos = [For, Des, Const, Int, Car, Sab]
+#print(atribuir_atributo([1,2,3,4,5,6], 'guerreiro', 'força'))
