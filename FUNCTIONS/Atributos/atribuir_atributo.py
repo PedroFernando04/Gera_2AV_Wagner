@@ -1,4 +1,15 @@
 import os
+def print_atributos(dados_matriz, atributos):
+    print(f"|D1 = [{dados_matriz[0]}] | D2 = [{dados_matriz[1]}] | D3 = [{dados_matriz[2]}] |")
+    print(f"|D4 = [{dados_matriz[3]}] | D5 = [{dados_matriz[4]}] | D6 = [{dados_matriz[5]}] |")
+
+    print(f"\nOs atributos são:")
+    print(f"Força:        {atributos[0]}", )
+    print(f"Destreza:     {atributos[1]}", )
+    print(f"Constituição: {atributos[2]}", )
+    print(f"Inteligência: {atributos[3]}", )
+    print(f"Carisma:      {atributos[4]}", )
+    print(f"Sabedoria:    {atributos[5]}")
 
 def atribuir_atributo(dados_matriz, nome_classe, atributo_classe):
     For = Des = Const = Int = Car = Sab = 0
@@ -7,16 +18,7 @@ def atribuir_atributo(dados_matriz, nome_classe, atributo_classe):
     #Mostra os atributos atuais
     for i in range (6):
         
-        print(f"|D1 = [{dados_matriz[0]}] | D2 = [{dados_matriz[1]}] | D3 = [{dados_matriz[2]}] |")
-        print(f"|D4 = [{dados_matriz[3]}] | D5 = [{dados_matriz[4]}] | D6 = [{dados_matriz[5]}] |")
-
-        print(f"\nOs atributos são:")
-        print(f"Força:        {atributos[0]}", )
-        print(f"Destreza:     {atributos[1]}", )
-        print(f"Constituição: {atributos[2]}", )
-        print(f"Inteligência: {atributos[3]}", )
-        print(f"Carisma:      {atributos[4]}", )
-        print(f"Sabedoria:    {atributos[5]}")
+        print_atributos(dados_matriz, atributos)
 
         print(f"Sua classe ({nome_classe}) prioriza ({atributo_classe})")
         
@@ -35,16 +37,7 @@ def atribuir_atributo(dados_matriz, nome_classe, atributo_classe):
                 print("Valor inválido ou dado já utilizado!")
                 print("Informe um dos dados presentes na tabela e que já não tenha sido utilizado!\n")
 
-                print(f"|D1 = [{dados_matriz[0]}] | D2 = [{dados_matriz[1]}] | D3 = [{dados_matriz[2]}] |")
-                print(f"|D4 = [{dados_matriz[3]}] | D5 = [{dados_matriz[4]}] | D6 = [{dados_matriz[5]}] |")
-
-                print(f"\nOs atributos são:")
-                print(f"Força:        {atributos[0]}", )
-                print(f"Destreza:     {atributos[1]}", )
-                print(f"Constituição: {atributos[2]}", )
-                print(f"Inteligência: {atributos[3]}", )
-                print(f"Carisma:      {atributos[4]}", )
-                print(f"Sabedoria:    {atributos[5]}")
+                print_atributos(dados_matriz, atributos)
 
                 print(f"\nSua classe ({nome_classe}) prioriza ({atributo_classe})")  
             
@@ -57,13 +50,7 @@ def atribuir_atributo(dados_matriz, nome_classe, atributo_classe):
         os.system('cls')
 
 
-    print(f"\nOs atributos são:")
-    print(f"Força:        {atributos[0]}", )
-    print(f"Destreza:     {atributos[1]}", )
-    print(f"Constituição: {atributos[2]}", )
-    print(f"Inteligência: {atributos[3]}", )
-    print(f"Carisma:      {atributos[4]}", )
-    print(f"Sabedoria:    {atributos[5]}")
+    print_atributos(dados_matriz, atributos)
     return atributos
         
 #TESTE DA FUNÇÃO
