@@ -6,7 +6,6 @@ from FUNCTIONS.Gera.Vida import pv
 
 from FUNCTIONS.Login.Cadastro_login import CadLog
 from FUNCTIONS.Login.menu import Menu
-from FUNCTIONS.Login.Validacao import validacao
 
 # Menu principal do Gera Fichar
 while True:
