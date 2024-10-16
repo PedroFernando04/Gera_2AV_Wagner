@@ -27,7 +27,7 @@ def pv(classe, Const):
 
     dadovida = random.randint(0, dvariavel)
 
-    vida = dadovida + dvariavel
+    vida = dadovida + Const
 
     print(f"Baseado na classe de seu personagem, você tem direito a um dado de {dvariavel} lados\n")
 
