@@ -1,4 +1,4 @@
-import random
+import random, os
 
 def pv(classe, Const):
     print("\nAgora vamos calcular a vida do personagem")
@@ -10,6 +10,11 @@ def pv(classe, Const):
     print("Mago       |  6")
     print("Bardo      |  8")
     print("Druida     |  8")
+    
+    #Despoluir tela
+    input("[Pressione qualquer tecla para seguir]")
+    os.system('cls')
+
     
     if classe == 'Guerreiro':
         dvariavel = 10
