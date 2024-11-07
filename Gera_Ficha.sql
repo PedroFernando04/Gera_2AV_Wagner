@@ -84,12 +84,12 @@ create table personagens(
 );
 
 create table usuarios(
-id_ususario serial primary key,
-email varchar (100) not null,
-senha varchar (100) not null,
-mod bool default False,
-id_personagem integer references personagens (id_personagem)
-);
+	id_ususario serial primary key,
+	email varchar (100) not null,
+	senha bytea (100) not null,
+	mod bool default False,
+	id_personagem integer references personagens (id_personagem)
+	);
 
 insert into usuarios (email, senha, mod)
 values ('mod@mod.com', 'mod', TRUE);
