@@ -8,12 +8,24 @@ def emailValido(users):
             usuario, dominio = email.split('@', 1)
             if usuario and dominio and '.' in dominio:
             #verificar se o email ja está cadastrado
+                #Verificar email no banco
+                
+                conn = conexao()
+                cursor = conn.cursor()
+                query = f"SELECT email FROM usuarios WHERE email = '{email}'"
+                conn.commit(query)
+                cursor.execute()
+                row = cursor.fetchall()
+                cursor.close()
+                conn.close()
+
                 email_ja_cadastrado = False
-                for user in users:
-                    if email == user.email:
-                        print('\nEsse email já foi cadastrado.')
-                        email_ja_cadastrado = True
-                        break
+                #for user in users:
+                    #if email == user.email:
+                if row:
+                    print('\nEsse email já foi cadastrado.')
+                    email_ja_cadastrado = True
+                    break
                 if not email_ja_cadastrado:
                     return email
             else:
