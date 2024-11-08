@@ -13,7 +13,7 @@ def pv(classe, Const):
     
     #Despoluir tela
     input("\n[Pressione qualquer tecla para seguir]\n")
-    os.system('cls')
+    os.system("cls" or "clear")
 
 
     if classe == 'Guerreiro':
