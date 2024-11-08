@@ -14,7 +14,7 @@ def criar_personagem():
     nome = input("Qual o nome do seu personagem? ")
 
     #Limpar o tutorial e manter o nome
-    os.system('cls')
+    os.system("cls" or "clear")
     print(f"Nome: {nome}")
     
     #Escolha da classe
@@ -36,7 +36,7 @@ def criar_personagem():
             print("\nValor inválido!")
             print("informe um dos valores presentes na tabela\n")
         else:
-            os.system('cls')
+            os.system("cls" or "clear")
             break
 
     match(classe):
