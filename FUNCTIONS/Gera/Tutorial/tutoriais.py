@@ -4,7 +4,7 @@ def inicio():
     nome = "Gera Fischar"
 
     #Apresentação
-    os.system('cls')
+    os.system("cls" or "clear")
     print(f"Bem vindo(a) ao {nome}!")
     print("Aqui vamos te ajudar a montar a ficha para o seu personagem de RPG!")
     print("\nNa sua ficha de RPG você irá escolher o nome, a classe e os atributos do seu personagem.")
@@ -28,7 +28,7 @@ def inicio():
                 break
                 
             case _:
-                os.system('cls')
+                os.system("cls" or "clear")
                 print("Deseja ver algum tutorial?")
                 print(f"1 - Tutorial de classes\n2 - Tutorial de atributos\n3 - Tutorial do {nome}\n4 - Nenhum tutorial\n")
                 tutorial = int(input())
@@ -36,7 +36,7 @@ def inicio():
 
 #CLASSES
 def tutorial_classe():
-    os.system('cls')
+    os.system("cls" or "clear")
 
     #Tutorial
     print("\nClasse é o que definirá o seu papel no jogo.\n(Determina as habilidades, aptidões e estilo de jogo do personagem.)")
@@ -83,8 +83,7 @@ def tutorial_classe():
             
 #ATRIBUTOS
 def tutorial_atributo():
-    os.system('cls')
-    os.system('cls')
+    os.system("cls" or "clear")
     #Atributos
     print("\nAtributos são valores numéricos que representam as habilidades e as capacidades do personagem.\n")
     print("Valores esses que servem como base para determinar a eficácia do personagem em diversas habilidades e ações.")
@@ -119,7 +118,7 @@ def tutorial_atributo():
 
  #GERA   
 def tutorial_gera(nome):
-    os.system('cls')
+    os.system("cls" or "clear")
             
     print(f"\nNo {nome} você vai, primeiramente, escolher o nome do seu personagem.\n(Basta Colocar o nome que desejar, simples ou composto, e teclar 'Enter' para registrá-lo)\n")
     print("Após isso será escolhida a classe(em caso de dúvida, consultar o tutorial de classes), teclando o número equivalente à classe desejada.\n")
