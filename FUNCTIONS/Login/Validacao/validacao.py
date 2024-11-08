@@ -1,3 +1,5 @@
+import os
+from FUNCTIONS.Conexao.conexao import conexao
 #Validação de Emails
 def emailValido(users):
     while True:
@@ -15,9 +17,11 @@ def emailValido(users):
                 if not email_ja_cadastrado:
                     return email
             else:
-                print('\nDigite um email válido!')
+                os.system("cls" or "clear")
+                print('\nFormato inválido!')
         else:
-            print ('\nDigite um email válido!')
+            os.system("cls" or "clear")
+            print('\nFormato inválido!')
 
 #Validação da senha
 def senhaValida():
@@ -27,6 +31,7 @@ def senhaValida():
         if senha == senha2:
             return senha
         else:
+            os.system("cls" or "clear")
             print('Senhas não correspondentes, digite novamente\n')
 
 #Validação do login
