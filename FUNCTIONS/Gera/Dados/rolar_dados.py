@@ -29,14 +29,14 @@ def rolar_dados(qnt_dados, nome_classe, atributo_classe):
                 print(f"Deseja rerolar? você tem {3 - re_rolagens}")
                 print("1 - Sim\n2 - Não")
             else:
-                os.system('cls')
+                os.system("cls" or "clear")
                 break
         
         if re_rolagens == 2 or rerolar == 2:
             break
 
         else:
-            os.system('cls')
+            os.system("cls" or "clear")
             print(f"Classe selecionada: {nome_classe}")
             print(f"Atributo preferível: {atributo_classe}\n")
 
