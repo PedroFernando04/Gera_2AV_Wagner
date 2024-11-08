@@ -1,4 +1,4 @@
-from FUNCTIONS.Gera.Atributos import atribuir_atributo, modificadores
+from FUNCTIONS.Gera.Atributos import atribuir_atributo
 from FUNCTIONS.Gera.Dados import rolar_dados
 from FUNCTIONS.Gera.Personagem import criar_personagem
 from FUNCTIONS.Gera.Tutorial import tutoriais
@@ -20,18 +20,16 @@ while True:
                 print("E-mail cadastrado com sucesso!")
         case 2:
             if not usuarios:
+                os.system("cls" or "clear")
                 print ("Nenhum usuário cadastrado")
-                input('\n[Pressione qualquer botão para voltar ao menu]\n[Tente fazer o login novamente]\n')
+                input('\n[Pressione qualquer tecla para voltar ao menu]\n')
                 continue
             if CadLog.logar(usuarios):
                 break
             else:
-                input('\n[Pressione qualquer botão para voltar ao menu]\n[Tente fazer o login novamente]\n')
-                
-
-
-                
+                input('\n[Pressione qualquer botão para voltar ao menu]\n[Tente fazer o login novamente]\n')   
         case 3:
+            os.system("cls" or "clear")
             print('\nEncerrando o programa...\n\nFim\n')
             exit()
 
@@ -45,7 +43,7 @@ personagem = criar_personagem.criar_personagem()[0]
 
 #Rolar os dados
 input("\nAgora está na hora de rolar os dados!\n[pressione qualquer tecla para seguir]\n")
-os.system('cls')
+os.system("cls" or "clear")
 dados_matriz = rolar_dados.rolar_dados(6, personagem.classe, personagem.atributo)
 
 #Utilização do Personagem
@@ -60,12 +58,12 @@ atributos = atribuir_atributo.atribuir_atributo(dados_matriz, personagem.classe,
 
 #PV
 input("\nÉ hora dos pontos de vida\n[pressione qualquer tecla para seguir]\n")
-os.system('cls')
+os.system("cls" or "clear")
 vida = pv.pv(personagem.classe, atributos[2])
 
 #limpar tela para deixar a apenas a ficha
 input("\n[Pressione qualquer tecla para ver sua ficha finalizada]\n")
-os.system('cls')
+os.system("cls" or "clear")
 
 #Ficha final
 print(f"Nome: {personagem.nome}")
