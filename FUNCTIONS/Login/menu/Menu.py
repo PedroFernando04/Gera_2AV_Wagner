@@ -20,9 +20,9 @@ def intinput():
 #menu padrao do Gera
 def menu():
     while True:
-        os.system('cls')
-
-        print("\nSeu organizador e gerenciador de Ficha do personagem\n")
+        os.system("cls" or "clear")
+        print("Bem vindo ao Gera Fischar!")
+        print("Seu organizador e gerenciador de Ficha do personagem\n")
         print('1 - Realizar Cadastro')
         print('2 - Login')
         print('3 - Sair')
