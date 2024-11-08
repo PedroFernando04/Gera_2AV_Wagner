@@ -33,7 +33,7 @@ def atribuir_atributo(dados_matriz, nome_classe, atributo_classe):
                 elif dados_matriz[dado_selecionado - 1] == "Utilizado":
                     raise ValueError("Dado já utilizado!")
             except ValueError:
-                os.system('cls')
+                os.system("cls" or "clear")
                 print("Valor inválido ou dado já utilizado!")
                 print("Informe um dos dados presentes na tabela e que já não tenha sido utilizado!\n")
 
@@ -47,7 +47,7 @@ def atribuir_atributo(dados_matriz, nome_classe, atributo_classe):
         #Atribui o dado ao atributo
         atributos[i] = dados_matriz[dado_selecionado - 1]
         dados_matriz[dado_selecionado - 1] = "Utilizado"
-        os.system('cls')
+        os.system("cls" or "clear")
 
 
     print_atributos(dados_matriz, atributos)
