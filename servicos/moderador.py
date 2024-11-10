@@ -19,7 +19,7 @@ def visualizar_dados(conn):
                 tabela = "armas"
                 tipo = "Armas"
             case "4":
-                print("Saindo do menu Visualizar...")
+                print("Saindo...")
                 break
             case _:
                 print("Opção inválida.")
