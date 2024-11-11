@@ -12,14 +12,14 @@ drop table if exists gera.itens;
 drop table if exists gera.class_itens;
 
 
-create table class_itens(
+create table gera.class_itens(
 	id_class_item serial primary key,
 	categoria varchar (100) not null,
 	tipo varchar(100),
 	efeito varchar (100) not null
 );
 
-create table itens(
+create table gera.itens(
 	id_item serial primary key,
 	nome varchar (100) not null,
 	id_class_item integer references class_itens(id_class_item),
@@ -28,7 +28,7 @@ create table itens(
 	peso numeric not null
 );
 
-create table armaduras (
+create table gera.armaduras (
 	id_armadura serial primary key,
 	nome varchar (200) not null,
 	tipo varchar (200) not null,
@@ -38,7 +38,7 @@ create table armaduras (
 	peso numeric
 );
 
-create table armas (
+create table gera.armas (
 	id_arma serial primary key,
 	nome varchar (200) not null,
 	tipo varchar (200) not null,
@@ -48,20 +48,20 @@ create table armas (
 	peso numeric
 );
 
-create table inventarios (
+create table gera.inventarios (
 	id_inventario serial primary key,
 	id_arma integer references armas (id_arma),
 	id_item integer references itens (id_item),
 	id_armadura integer references armaduras (id_armadura)
 );
 
-create table racas (
+create table gera.racas (
 	id_raca serial primary key,
-	nome varchar (25) not null,
-	passiva varchar (100) not null
+	nome varchar (200) not null,
+	passiva varchar (400) not null
 );
 
-create table atributos (
+create table gera.atributos (
 	id_atributo serial primary key,
 	forca integer not null,
 	destreza integer not null,
@@ -71,7 +71,7 @@ create table atributos (
 	carisma integer not null
 );
 
-create table personagens(
+create table gera.personagens(
 	id_personagem serial primary key,
 	nome varchar (50),
 	vida integer,
@@ -83,16 +83,13 @@ create table personagens(
 	descricao varchar (1000)
 );
 
-create table usuarios(
-	id_ususario serial primary key,
-	email varchar (100) not null,
-	senha bytea (100) not null,
-	mod bool default False,
-	id_personagem integer references personagens (id_personagem)
-	);
-
-insert into usuarios (email, senha, mod)
-values ('mod@mod.com', 'mod', TRUE);
+create table gera.usuarios (
+    id_usuario serial primary key,
+    email varchar(100) not null,
+    senha bytea not null,
+    mod boolean default false,
+    id_personagem integer references gera.personagens(id_personagem)
+);
 
 insert into gera.class_itens (categoria,tipo,efeito)
 values ('consumível','Cura ','Cura 1d6'), --Poção de cura, ervas medicinais
@@ -150,18 +147,41 @@ values
 	('Cajado de Fogo', 'Mágica', '+4 Sabedoria', 15, 600, 2.0),
 	('Adagas','Corpo a Corpo','+1 Destreza', 10, 100, 1.0);
 
-INSERT INTO inventarios (id_arma, id_item, id_armadura)
-VALUES
-    -- Kit básico para o Guerreiro
+insert into inventarios (id_arma, id_item, id_armadura)
+values
+    -- 1 Kit básico para o Guerreiro
     (1, 1, 2),  -- Espada Longa, Poção de Cura, Armadura de Placas
-    -- Kit básico para o Ladino
+    -- 2 Kit básico para o Ladino
     (7, 3, 1),  -- Adagas, Frasco de Veneno, Armadura de Couro
-    -- Kit básico para o Curandeiro
+    -- 3 Kit básico para o Curandeiro
     (5, 15, 6), -- Báculo, Feitiço de Benção, Cota de Malha
-    -- Kit básico para o Mago
+    -- 4 Kit básico para o Mago
     (6, 18, 5), -- Cajado de Fogo, Pergaminho de Bola de Fogo, Armadura Mágica
-    -- Kit básico para o Bardo
+    -- 5 Kit básico para o Bardo
     (7, 5, 3),  -- Adagas, Frasco de Afinidade, Armadura de Couro Reforçada
-    -- Kit básico para o Druida
+    -- 6 Kit básico para o Druida
     (5, 14, 4); -- Báculo, Pote de Piche, Sunga de Texugo
 
+insert into racas (nome,passiva)
+values
+	('Humano','Ganha mais 3 perícias básicas'),
+	('Elfo', 'Visão noturna e +2 em Percepção'),
+	('Anão', 'Resistência a venenos e +2 em Constituição'),
+	('Orc', 'Força aumentada e +2 em Força'),
+	('Halfling', 'Pequeno porte e +2 em Esquiva'),
+	('Gnomo', 'Afinidade com magia e +2 em Inteligência'),
+	('Tiefling', 'Resistência a fogo e +2 em Charme'),
+	('Draconato', 'Sopro elemental e resistência ao tipo de dano do elemento'),
+	('Meio-Elfo', '+1 em Carisma e escolha uma habilidade extra'),
+	('Goblin', 'Movimento furtivo e +2 em Destreza');
+
+insert into atributos (forca, destreza, constituicao,inteligencia,sabedoria,carisma)
+values
+	(20,20,20,20,20,20);
+    
+insert into gera.personagens (id_personagem, nome, vida, dinheiro,classe, id_inventario, id_raca, id_atributo, descricao) 
+values
+	(1, 'Theus', 999, 9999, 'Guerreiro',1,1,1,'GM' );
+	
+insert into gera.usuarios (email, senha, mod, id_personagem)
+values ('mod@mod.com', 'mod', true, 1);
