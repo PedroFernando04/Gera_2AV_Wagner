@@ -1,39 +1,34 @@
 import os
-from FUNCTIONS.Conexao.conexao import conexao
+
 #Validação de Emails
-def emailValido(users):
+def emailValido(users, conn):
     while True:
         email = input('\nDigite um email Válido: ')
         if '@' in email:
             usuario, dominio = email.split('@', 1)
             if usuario and dominio and '.' in dominio:
-            #verificar se o email ja está cadastrado
-                #Verificar email no banco
-                
-                conn = conexao()
-                cursor = conn.cursor()
-                query = f"SELECT email FROM usuarios WHERE email = '{email}'"
-                conn.commit(query)
-                cursor.execute()
-                row = cursor.fetchall()
-                cursor.close()
-                conn.close()
-
-                email_ja_cadastrado = False
-                #for user in users:
-                    #if email == user.email:
-                if row:
+                email_existente = email_bd(conn, email)
+                if email_existente:
                     print('\nEsse email já foi cadastrado.')
-                    email_ja_cadastrado = True
-                    break
-                if not email_ja_cadastrado:
+                else:
                     return email
+                """#verificar se o email ja está cadastrado na lista(no proprio gera)
+                    email_ja_cadastrado = False
+                    for user in users:
+                        if email == user.email:
+                            print('\nEsse email já foi cadastrado.')
+                            email_ja_cadastrado = True
+                            break
+                    if not email_ja_cadastrado:
+                        return email"""
             else:
-                os.system("cls" or "clear")
-                print('\nFormato inválido!')
+                os.system('cls' or 'clear')
+                print('\n[ CADASTRO ]\n')
+                print('\nDigite um email válido!')
         else:
-            os.system("cls" or "clear")
-            print('\nFormato inválido!')
+            os.system('cls' or 'clear')
+            print('\n[ CADASTRO ]\n')
+            print('\nDigite um email válido!')
 
 #Validação da senha
 def senhaValida():
@@ -43,21 +38,38 @@ def senhaValida():
         if senha == senha2:
             return senha
         else:
-            os.system("cls" or "clear")
             print('Senhas não correspondentes, digite novamente\n')
 
 #Validação do login
-def loginValido(email, senha, usuarios):
+def loginValido(email, senha, usuarios, conn):
     validacao = 0
     for i in range(0, len(usuarios)):
         try:
-            if email == usuarios[i].email and senha == usuarios[i].senha:
-                validacao += 1
-                if validacao > 0:
-                    print('Usuário válido\n')
+            if email_bd(conn, email) and senha_bd(conn, senha, email):
+                print('Usuário válido\n')
                 return True
             else:
                 pass
         except:
             print ('Usuário e senha não encontrado')
             return False
+
+
+#Email presente no banco
+
+def email_bd(conn, email):
+    cursor = conn.cursor()
+    query = f'SELECT email FROM gera.usuarios WHERE email = \'{email}\' '
+    cursor.execute(query)
+    email_existente = cursor.fetchall()
+    
+    return email_existente
+
+
+def senha_bd(conn, senha, email):
+    cursor = conn.cursor()
+    query = f"SELECT senha FROM gera.usuarios WHERE senha = \'{senha}\' and email = \'{email}\'"
+    cursor.execute(query)
+    senha_existente = cursor.fetchall()
+
+    return senha_existente
