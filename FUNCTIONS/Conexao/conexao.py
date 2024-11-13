@@ -3,7 +3,7 @@ import psycopg2
 def conexao():
     try:
         conn = psycopg2.connect(
-            dbname = 'Gera_Fischar',
+            dbname = 'postgres',
             user = 'postgres',
             password = '123456',
             host = 'localhost',
