@@ -42,7 +42,6 @@ def senhaValida():
 
 #Validação do login
 def loginValido(email, senha, usuarios, conn):
-    validacao = 0
     for i in range(0, len(usuarios)):
         try:
             if email_bd(conn, email) and senha_bd(conn, senha, email):
@@ -50,8 +49,10 @@ def loginValido(email, senha, usuarios, conn):
                 return True
             else:
                 pass
-        except:
+        except Exception as e:
+            print(e)
             print ('Usuário e senha não encontrado')
+            input()
             return False
 
 
@@ -59,8 +60,9 @@ def loginValido(email, senha, usuarios, conn):
 
 def email_bd(conn, email):
     cursor = conn.cursor()
-    query = f'SELECT email FROM gera.usuarios WHERE email = \'{email}\' '
+    query = f"SELECT email FROM gera.usuarios WHERE email = '{email}'"
     cursor.execute(query)
+    conn.commit()
     email_existente = cursor.fetchall()
     
     return email_existente
@@ -68,8 +70,9 @@ def email_bd(conn, email):
 
 def senha_bd(conn, senha, email):
     cursor = conn.cursor()
-    query = f"SELECT senha FROM gera.usuarios WHERE senha = \'{senha}\' and email = \'{email}\'"
+    query = f"SELECT senha FROM gera.usuarios WHERE senha = '{senha}' and email = '{email}'"
     cursor.execute(query)
+    conn.commit()
     senha_existente = cursor.fetchall()
 
     return senha_existente
