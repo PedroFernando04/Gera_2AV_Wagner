@@ -41,19 +41,18 @@ def senhaValida():
             print('Senhas não correspondentes, digite novamente\n')
 
 #Validação do login
-def loginValido(email, senha, usuarios, conn):
-    for i in range(0, len(usuarios)):
-        try:
-            if email_bd(conn, email) and senha_bd(conn, senha, email):
-                print('Usuário válido\n')
-                return True
-            else:
-                pass
-        except Exception as e:
-            print(e)
-            print ('Usuário e senha não encontrado')
-            input()
-            return False
+def loginValido(email, senha, conn):
+    try:
+        if email_bd(conn, email) and senha_bd(conn, senha, email):
+            print('Usuário válido\n')
+            return True
+        else:
+            pass
+    except Exception as e:
+        print(e)
+        print ('Usuário e senha não encontrado')
+        input()
+        return False
 
 
 #Email presente no banco
