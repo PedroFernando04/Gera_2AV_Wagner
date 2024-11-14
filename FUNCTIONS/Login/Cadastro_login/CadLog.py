@@ -31,16 +31,16 @@ def cadastrar (conn):
         input()
 
 
-def logar (users, conn):
+def logar (conn):
     os.system('cls' or 'clear')
     
     print('\n[ LOGIN ]\n')
     nome_login = input ('Digite seu Email: ')
     senha_login = input ('Digite sua senha: ')
 
-    if loginValido(nome_login, senha_login, users, conn):
+    if loginValido(nome_login, senha_login, conn):
         return True
     else:
-        print('\nUsuário e senha inválida!')
+        print('\nUsuário ou senha inválido!')
         return False
 
