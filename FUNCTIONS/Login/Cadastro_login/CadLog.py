@@ -38,8 +38,10 @@ def logar (conn):
     nome_login = input ('Digite seu Email: ')
     senha_login = input ('Digite sua senha: ')
 
-    if loginValido(nome_login, senha_login, conn):
-        return True
+   id_usuario = loginValido(nome_login, senha_login, conn)
+    
+    if id_usuario:
+        return id_usuario
     else:
         print('\nUsuário ou senha inválido!')
         return False
