@@ -42,10 +42,13 @@ def senhaValida():
 
 #Validação do login
 def loginValido(email, senha, conn):
+
+    id_usuario = email_bd(conn, email)
+
     try:
-        if email_bd(conn, email) and senha_bd(conn, senha, email):
+        if id_usuario and senha_bd(conn, senha, email):
             print('Usuário válido\n')
-            return True
+            return id_usuario
         else:
             pass
     except Exception as e:
@@ -59,12 +62,13 @@ def loginValido(email, senha, conn):
 
 def email_bd(conn, email):
     cursor = conn.cursor()
-    query = f"SELECT email FROM gera.usuarios WHERE email = '{email}'"
+    query = f"SELECT * FROM gera.usuarios WHERE email = '{email}'"
     cursor.execute(query)
     conn.commit()
-    email_existente = cursor.fetchall()
+    usuario = cursor.fetchall()
     
-    return email_existente
+    #retorna o id do usuario
+    return usuario[0][0]
 
 
 def senha_bd(conn, senha, email):
