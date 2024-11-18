@@ -24,7 +24,8 @@ while True:
             if usuarios:
                 print("E-mail cadastrado com sucesso!")
         case 2:
-            if CadLog.logar(conn):
+            id_usuario = CadLog.logar(conn) 
+            if id_usuario:
                 break
             else:
                 input('\n[Pressione qualquer botão para voltar ao menu]\n[Tente fazer o login novamente]\n')
