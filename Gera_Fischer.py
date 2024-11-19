@@ -35,7 +35,7 @@ while True:
 inicio()
 
 #Criação do personagem
-personagem = criacao(conn)
+id_personagem = criacao(conn, id_usuario)
 
 #Print final
 #print_final(conn, id_personagem)
