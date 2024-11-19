@@ -22,7 +22,7 @@ def cadastrar (conn):
     #colocar no bd
     try:
         cursor = conn.cursor()
-        query = f"INSERT INTO gera.usuarios(email, senha, mod, id_personagem) VALUES ('{email}', '{senha}', 'false' , '1')"
+        query = f"INSERT INTO gera.usuarios(email, senha, mod) VALUES ('{email}', '{senha}', 'false')"
         cursor.execute(query)
         conn.commit()
         return usuarios
@@ -38,7 +38,7 @@ def logar (conn):
     nome_login = input ('Digite seu Email: ')
     senha_login = input ('Digite sua senha: ')
 
-   id_usuario = loginValido(nome_login, senha_login, conn)
+    id_usuario = loginValido(nome_login, senha_login, conn)
     
     if id_usuario:
         return id_usuario
