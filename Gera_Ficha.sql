@@ -88,7 +88,7 @@ create table gera.personagens(
 	id_raca integer references racas (id_raca),
 	id_atributo integer references atributos (id_atributo),
 	descricao varchar (1000),
-        id_usuario integer references usuarios (id_usuario)
+    id_usuario integer references usuarios (id_usuario)
 );
 
 insert into gera.class_itens (categoria,tipo,efeito)
