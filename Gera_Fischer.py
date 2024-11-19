@@ -55,7 +55,7 @@ print(f"\nAgora vamos definir os atributos de {personagem.nome}\n")
 
 #Atributos
 atributos = atribuir_atributo.atribuir_atributo(dados_matriz, personagem.classe, personagem.atributo)
-id_usuario = atribuir_atributo.atribuir_atributo_BD(atributos)
+id_atributo = atribuir_atributo.atribuir_atributo_BD(atributos)
 
 #PV
 input("\nÉ hora dos pontos de vida\n[pressione qualquer tecla para seguir]\n")
