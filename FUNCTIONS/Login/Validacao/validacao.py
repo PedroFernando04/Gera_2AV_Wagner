@@ -68,8 +68,10 @@ def email_bd(conn, email):
     usuario = cursor.fetchall()
     
     #retorna o id do usuario
-    return usuario[0][0]
-
+    if usuario:
+        return usuario[0][0]
+    else:
+        return False
 
 def senha_bd(conn, senha, email):
     cursor = conn.cursor()
