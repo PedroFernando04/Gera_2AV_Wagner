@@ -11,13 +11,14 @@ def rolar_dados(qnt_dados, nome_classe, atributo_classe):
         else:
             soma_re_rolagens = 0
 
+        print(f"Classe: {nome_classe}\nAtributo: {atributo_classe}")
         print("\nResultado dos dados: \n")
         for j in range(0, qnt_dados):
             dados_matriz.append(random.randint(1, 20))
             print(f"Dado {j + 1}: {dados_matriz[j + soma_re_rolagens]}")
         
         print(f"\nDeseja rerolar? você tem {3 - re_rolagens} chances")
-        print("1 - Sim\n2 - Não")
+        print("1 - Sim\n2 - Não\n")
         
         while True:
             try:
