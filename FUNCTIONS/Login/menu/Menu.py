@@ -7,13 +7,18 @@ def intinput():
             if 1 <= resp <= 3:
                 return resp
             else:
+                os.system('cls' or 'clear')
                 print("\nDigite um número válido entre 1 e 3.")
                 print('1 - Realizar Cadastro')
                 print('2 - Login')
                 print('3 - Sair')
 
         except ValueError:
+            os.system('cls' or 'clear')
             print("Digite um número inteiro válido.")
+            print('1 - Realizar Cadastro')
+            print('2 - Login')
+            print('3 - Sair')
 
 
 
