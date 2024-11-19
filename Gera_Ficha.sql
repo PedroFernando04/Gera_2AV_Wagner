@@ -179,9 +179,9 @@ insert into atributos (forca, destreza, constituicao,inteligencia,sabedoria,cari
 values
 	(20,20,20,20,20,20);
     
-insert into gera.personagens (id_personagem, nome, vida, dinheiro,classe, id_inventario, id_raca, id_atributo, descricao) 
+insert into gera.personagens (id_personagem, nome, vida, dinheiro, classe, id_inventario, id_raca, id_atributo, descricao, id_usuario) 
 values
-	(1, 'Theus', 999, 9999, 'Guerreiro',1,1,1,'GM' );
+	(1, 'Theus', 999, 9999, 'Guerreiro',1,1,1,'GM',1 );
 	
-insert into gera.usuarios (email, senha, mod, id_personagem)
+insert into gera.usuarios (email, senha, mod)
 values ('mod@mod.com', 'mod', true, 1);
