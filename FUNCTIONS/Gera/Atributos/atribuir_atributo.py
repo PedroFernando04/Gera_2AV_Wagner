@@ -56,3 +56,32 @@ def atribuir_atributo(dados_matriz, nome_classe, atributo_classe):
 #TESTE DA FUNÇÃO
 #Ordem do resultado --> atributos = [For, Des, Const, Int, Car, Sab]
 #print(atribuir_atributo([1,2,3,4,5,6], 'guerreiro', 'força'))
+
+def atribuir_atributo_BD(atributos):
+    conn = conexao()
+    cursor = conn.cursor()
+    
+    #atribui os atributos ao banco
+    try:
+        for For, Des, Const, Int, Car, Sab in atributos:
+            query = f"INSERT INTO gera.atributos(forca, destreza, constituicao, inteligencia, carisma, sabedoria) VALUES ('{For}', '{Des}', '{Const}', '{Int}', '{Car}', '{Sab}')"
+        conn.commit()
+        cursor.execute(query)
+    except Exception as e:
+        print(f"ERRO INSERT ATRIBUTO: {e}")
+    finally:
+        cursor.close()
+        conn.close()
+
+    #retorna o id_atributo para vincular ao personagem
+    try:
+        query2 = "SELECT * from gera.atributos ORDER BY id_atributo DESC LIMIT 1"
+        conn.commit()
+        cursor.execute(query2)
+        id_atributo = cursor.fetchall()
+        return id_atributo
+    except Exception as e:
+        print(f"ERRO SELECT ATRIBUTOS: {e}")
+    finally:
+        cursor.close()
+        conn.close()
