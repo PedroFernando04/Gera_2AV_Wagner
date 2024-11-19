@@ -71,6 +71,13 @@ create table gera.atributos (
 	carisma integer not null
 );
 
+create table gera.usuarios (
+    id_usuario serial primary key,
+    email varchar(100) not null,
+    senha bytea not null,
+    mod boolean default false
+);
+
 create table gera.personagens(
 	id_personagem serial primary key,
 	nome varchar (50),
@@ -82,13 +89,6 @@ create table gera.personagens(
 	id_atributo integer references atributos (id_atributo),
 	descricao varchar (1000),
         id_usuario integer references usuarios (id_usuario)
-);
-
-create table gera.usuarios (
-    id_usuario serial primary key,
-    email varchar(100) not null,
-    senha bytea not null,
-    mod boolean default false
 );
 
 insert into gera.class_itens (categoria,tipo,efeito)
