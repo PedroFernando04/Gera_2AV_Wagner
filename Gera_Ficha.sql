@@ -82,7 +82,7 @@ create table gera.personagens(
 	id_personagem serial primary key,
 	nome varchar (50),
 	vida integer,
-	dinheiro money,
+	dinheiro money default 0,
 	classe varchar (25),
 	id_inventario integer references inventarios (id_inventario),
 	id_raca integer references racas (id_raca),
@@ -186,3 +186,4 @@ values ('mod@mod.com', 'mod', true);
 insert into gera.personagens (id_personagem, nome, vida, dinheiro, classe, id_inventario, id_raca, id_atributo, descricao, id_usuario) 
 values
 	(1, 'Theus', 999, 9999, 'Guerreiro',1,1,1,'GM',1 );
+	
