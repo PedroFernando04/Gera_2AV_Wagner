@@ -1,5 +1,7 @@
+from FUNCTIONS.Conexao.conexao import conexao
 import os
 def print_atributos(dados_matriz, atributos):
+
     print(f"|D1 = [{dados_matriz[0]}] | D2 = [{dados_matriz[1]}] | D3 = [{dados_matriz[2]}] |")
     print(f"|D4 = [{dados_matriz[3]}] | D5 = [{dados_matriz[4]}] | D6 = [{dados_matriz[5]}] |")
 
@@ -58,15 +60,16 @@ def atribuir_atributo(dados_matriz, nome_classe, atributo_classe):
 #print(atribuir_atributo([1,2,3,4,5,6], 'guerreiro', 'força'))
 
 def atribuir_atributo_BD(atributos):
-    conn = conexao()
-    cursor = conn.cursor()
     
     #atribui os atributos ao banco
     try:
+        conn = conexao()
+        cursor = conn.cursor()
         for For, Des, Const, Int, Car, Sab in atributos:
             query = f"INSERT INTO gera.atributos(forca, destreza, constituicao, inteligencia, carisma, sabedoria) VALUES ('{For}', '{Des}', '{Const}', '{Int}', '{Car}', '{Sab}')"
-        conn.commit()
         cursor.execute(query)
+        conn.commit()
+        
     except Exception as e:
         print(f"ERRO INSERT ATRIBUTO: {e}")
     finally:
@@ -75,11 +78,13 @@ def atribuir_atributo_BD(atributos):
 
     #retorna o id_atributo para vincular ao personagem
     try:
-        query2 = "SELECT * from gera.atributos ORDER BY id_atributo DESC LIMIT 1"
-        conn.commit()
+        conn = conexao()
+        cursor = conn.cursor()
+        query2 = "SELECT id_atributo from gera.atributos ORDER BY id_atributo DESC LIMIT 1"
         cursor.execute(query2)
-        id_atributo = cursor.fetchall()
-        return id_atributo
+        id_atributo = cursor.fetchone()
+        return id_atributo[0]
+    
     except Exception as e:
         print(f"ERRO SELECT ATRIBUTOS: {e}")
     finally:
