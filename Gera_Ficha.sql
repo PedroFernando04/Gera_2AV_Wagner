@@ -1,8 +1,8 @@
 CREATE SCHEMA IF NOT EXISTS gera;
 set search_path to gera;
 
-drop table if exists gera.personagens;
 drop table if exists gera.usuarios;
+drop table if exists gera.personagens;
 drop table if exists gera.racas;
 drop table if exists gera.inventarios;
 drop table if exists gera.atributos;
@@ -24,8 +24,8 @@ create table gera.itens(
 	nome varchar (100) not null,
 	id_class_item integer references class_itens(id_class_item),
 	quantidade integer not null default (0),
-	valor money not null,
-	peso numeric not null
+	valor money not null default (0),
+	peso numeric not null default (0)
 );
 
 create table gera.armaduras (
@@ -34,8 +34,8 @@ create table gera.armaduras (
 	tipo varchar (200) not null,
 	bonus varchar (200),
 	defesa_base integer not null default (0),
-	valor money,
-	peso numeric
+	valor money default (0),
+	peso numeric default (0)
 );
 
 create table gera.armas (
@@ -43,9 +43,9 @@ create table gera.armas (
 	nome varchar (200) not null,
 	tipo varchar (200) not null,
 	bonus varchar (200),
-	ataque_base integer,
-	valor money ,
-	peso numeric
+	ataque_base integer default (0),
+	valor money default (0),
+	peso numeric default (0)
 );
 
 create table gera.inventarios (
@@ -179,10 +179,9 @@ insert into atributos (forca, destreza, constituicao,inteligencia,sabedoria,cari
 values
 	(20,20,20,20,20,20);
     
-insert into gera.usuarios (email, senha, mod)
-values ('mod@mod.com', 'mod', true);
-
-insert into gera.personagens (nome, vida, dinheiro, classe, id_inventario, id_raca, id_atributo, descricao, id_usuario) 
+insert into gera.personagens (id_personagem, nome, vida, dinheiro, classe, id_inventario, id_raca, id_atributo, descricao, id_usuario) 
 values
-	('Theus', 999, 9999, 'Guerreiro',1,1,1,'GM',1 );
+	(1, 'Theus', 999, 9999, 'Guerreiro',1,1,1,'GM',1 );
 	
+insert into gera.usuarios (email, senha, mod)
+values ('mod@mod.com', 'mod', true, 1);
