@@ -1,8 +1,8 @@
 CREATE SCHEMA IF NOT EXISTS gera;
 set search_path to gera;
 
-drop table if exists gera.usuarios;
 drop table if exists gera.personagens;
+drop table if exists gera.usuarios;
 drop table if exists gera.racas;
 drop table if exists gera.inventarios;
 drop table if exists gera.atributos;
@@ -179,9 +179,10 @@ insert into atributos (forca, destreza, constituicao,inteligencia,sabedoria,cari
 values
 	(20,20,20,20,20,20);
     
-insert into gera.personagens (id_personagem, nome, vida, dinheiro, classe, id_inventario, id_raca, id_atributo, descricao, id_usuario) 
-values
-	(1, 'Theus', 999, 9999, 'Guerreiro',1,1,1,'GM',1 );
-	
 insert into gera.usuarios (email, senha, mod)
-values ('mod@mod.com', 'mod', true, 1);
+values ('mod@mod.com', 'mod', true);
+
+insert into gera.personagens (nome, vida, dinheiro, classe, id_inventario, id_raca, id_atributo, descricao, id_usuario) 
+values
+	('Theus', 999, 9999, 'Guerreiro',1,1,1,'GM',1 );
+	
