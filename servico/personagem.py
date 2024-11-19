@@ -3,7 +3,7 @@ from FUNCTIONS.Gera.Dados.rolar_dados import rolar_dados
 
 import random, os
 
-def criacao (conn):
+def criacao (conn, id_usuario):
     os.system('cls' or 'clear')
     print ("Agora para a criação do seu persongem vamos precisar de alguas informações: ")
     
@@ -23,37 +23,42 @@ def criacao (conn):
     
     vida = calculo_vida(conn, id_atributo, id_inventario)
 
-    valores = (nome, id_raca, classe, id_inventario, id_atributo, vida)
+    valores = (nome, id_raca, classe, id_inventario, id_atributo, vida, id_usuario)
     try:
         with conn.cursor() as cursor:
-            query = """insert into gera.personagens (nome,  id_raca, classe, id_inventario, id_atributo, vida) 
-            values (%s, %s, %s, %s, %s, %s);""" 
+            query = """insert into gera.personagens (nome, id_raca, classe, id_inventario, id_atributo, vida, id_usuario) 
+            values (%s, %s, %s, %s, %s, %s, %s);""" 
             cursor.execute(query, valores)
             conn.commit()
 
     except Exception as e:
         print(e)
     else:
-        print
+        return id_personagem(conn)
 
 def escolha_raca(conn):
     os.system('cls' or 'clear')
-    print("-" * 120)
-    print("Escolha sua Raça:")
-    try:
-        with conn.cursor() as cursor:
-            query = "SELECT * FROM gera.racas"
-            cursor.execute(query)
-            racas = cursor.fetchall()
-            
-            if racas:
-                for linha in racas:
-                    print(f"{linha[0]} - {linha[1]} || Passiva: {linha[2]}")
-                print("-" * 120)
-                opc = int(input("\nDigite o número da Raça que você deseja: "))
-                return opc
-    except Exception as e:
-        print(e)
+    while True:
+        try:
+            print("-" * 120)
+            print("Escolha sua Raça:")
+            with conn.cursor() as cursor:
+                query = "SELECT * FROM gera.racas"
+                cursor.execute(query)
+                racas = cursor.fetchall()
+                
+                if racas:
+                    for linha in racas:
+                        print(f"{linha[0]} - {linha[1]} || Passiva: {linha[2]}")
+                    print("-" * 120)
+                    opc = int(input("\nDigite o número da Raça que você deseja: "))
+                    if 1 <= opc <= 10:
+                        return opc
+                    else:
+                        raise Exception ("Raça inexistente")
+        except Exception as e:
+            os.system('cls' or 'clear')
+            print(e)
 
 def escolha_classe(conn):
     
@@ -179,3 +184,11 @@ def rolar_dados_personagem(nome_classe, nome_atributo):
     os.system('cls' or 'clear')
     dados_matriz = rolar_dados(6, nome_classe, nome_atributo)
     return dados_matriz
+
+def id_personagem(conn):
+    cursor = conn.cursor()
+    query = "SELECT id_personagem from gera.personagens ORDER BY id_personagem DESC LIMIT 1"
+    cursor.execute(query)
+    conn.commit()
+    row = cursor.fetchone()
+    return row[0]
