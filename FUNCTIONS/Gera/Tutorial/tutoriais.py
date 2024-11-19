@@ -12,26 +12,28 @@ def inicio():
     while True:
         print("Deseja ver algum tutorial?")
         print(f"1 - Tutorial de classes\n2 - Tutorial de atributos\n3 - Tutorial do {nome}\n4 - Nenhum tutorial\n")
-        tutorial = int(input())
+        tutorial = input()
         print("\n")
         match(tutorial):
-            case 1:
+            case '1':
                 tutorial_classe()
                 
-            case 2:
+            case '2':
                 tutorial_atributo()
                 
-            case 3:
+            case '3':
                 tutorial_gera(nome)
                 
-            case 4:
+            case '4':
+                os.system("cls" or "clear")
                 break
                 
             case _:
                 os.system("cls" or "clear")
                 print("Deseja ver algum tutorial?")
                 print(f"1 - Tutorial de classes\n2 - Tutorial de atributos\n3 - Tutorial do {nome}\n4 - Nenhum tutorial\n")
-                tutorial = int(input())
+                tutorial = input()
+                os.system("cls" or "clear")
 
 
 #CLASSES
