@@ -1,4 +1,4 @@
-from servicos.visualizar import *
+from servico.visualizar import *
 
 def visualizar_dados(conn):
     while True:
