@@ -39,5 +39,4 @@ id_personagem = criacao(conn, id_usuario)
 
 #Print final
 #print_final(conn, id_personagem)
-#id_personagem: criar uma função pra conseguir esse id e chamar a função dentro do print_final
 print("PRINT FINAL")
