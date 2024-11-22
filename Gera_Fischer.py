@@ -38,5 +38,6 @@ inicio()
 id_personagem = criacao(conn, id_usuario)
 
 #Print final
-#print_final(conn, id_personagem)
-print("PRINT FINAL")
+print_final(conn, id_personagem)
+
+conn.close()
