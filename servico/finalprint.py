@@ -1,3 +1,5 @@
+import os
+
 def print_final (conn, id_personagem):
     try:
         with conn.cursor () as cursor:
@@ -17,7 +19,8 @@ def print_final (conn, id_personagem):
             valores = cursor.fetchall ()
             
             for linha in valores:
-          
+                os.system('cls' or 'clear')
+                print("-" * 120)
                 for i in range(0,len(lista_perso)):
                     print(f"{lista_perso[i]}: {linha[i]}")
                 
