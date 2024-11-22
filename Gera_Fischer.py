@@ -5,8 +5,8 @@ from FUNCTIONS.Login.menu.Menu import menu
 
 from FUNCTIONS.Conexao.conexao import conexao
 
-from servico.personagem import criacao
-from servico.finalprint import print_final
+from servico.menu_login import menu_login
+
 
 conn = conexao()
 
@@ -34,10 +34,5 @@ while True:
 #iniciando o Gera
 inicio()
 
-#Criação do personagem
-id_personagem = criacao(conn, id_usuario)
-
-#Print final
-print_final(conn, id_personagem)
-
-conn.close()
+#Menu Login
+menu_login(conn, id_usuario)
