@@ -36,3 +36,5 @@ inicio()
 
 #Menu Login
 menu_login(conn, id_usuario)
+
+conn.close()
