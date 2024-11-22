@@ -19,7 +19,7 @@ def criacao (conn, id_usuario):
     escolha_inventario(conn,id_inventario)
 
     atributos = atribuir_atributo(dados_matriz, classe, atributo_principal)
-    id_atributo = atribuir_atributo_BD(atributos)
+    id_atributo = atribuir_atributo_BD(conn,atributos)
     
     vida = calculo_vida(conn, id_atributo, id_inventario)
 
@@ -166,6 +166,7 @@ def calculo_vida(conn, id_atributo, opc):
             resultado = cursor.fetchone()  
 
             const = resultado[0] 
+            print(const)
     except Exception as e:
         print(f"ERRO SELECT constituicao: {e}")
 
