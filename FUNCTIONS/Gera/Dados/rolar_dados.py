@@ -2,44 +2,45 @@ import random
 import os
 
 def rolar_dados(qnt_dados, nome_classe, atributo_classe):
-    dados_matriz = []
-
-    for re_rolagens in range(0, 3):
+    dados_matriz = []  
+    ultima_rolagem = []  
+    
+    print(f"Classe: {nome_classe}\nAtributo: {atributo_classe}")
+    
+    for re_rolagens in range(3):  #
+        ultima_rolagem = [random.randint(1, 20) for _ in range(qnt_dados)]
+        os.system("cls" or "clear")
         
-        if re_rolagens > 0:
-            soma_re_rolagens = 6 * re_rolagens
-        else:
-            soma_re_rolagens = 0
-
-        print(f"Classe: {nome_classe}\nAtributo: {atributo_classe}")
-        print("\nResultado dos dados: \n")
-        for j in range(0, qnt_dados):
-            dados_matriz.append(random.randint(1, 20))
-            print(f"Dado {j + 1}: {dados_matriz[j + soma_re_rolagens]}")
+        print("\nResultado dos dados:\n")
+        for i, valor in enumerate(ultima_rolagem, start=1):
+            print(f"Dado {i}: {valor}")
         
-        print(f"\nDeseja rerolar? você tem {3 - re_rolagens} chances")
-        print("1 - Sim\n2 - Não\n")
+        
+        dados_matriz = ultima_rolagem[:]
+        
+        if re_rolagens == 2:  
+            print("\nVocê atingiu o limite de rerrolagens.")
+            break
+
+        print(f"\nDeseja rerolar? Você tem {2 - re_rolagens} chance(s) restante(s).")
+        print("1 - Sim\n2 - Não")
         
         while True:
             try:
-                rerolar = int(input())
-                if rerolar != 1 and rerolar != 2:
+                rerolar = int(input("Escolha uma opção: "))
+                if rerolar not in [1, 2]:
                     raise ValueError
-            except(ValueError):
-                print("Valor inválido!")
-                print(f"Deseja rerolar? você tem {3 - re_rolagens}")
-                print("1 - Sim\n2 - Não")
+            except ValueError:
+                print("\nOpção inválida! Tente novamente.")
             else:
-                os.system("cls" or "clear")
                 break
         
-        if re_rolagens == 2 or rerolar == 2:
+        if rerolar == 2:  
             break
-
-        else:
-            os.system("cls" or "clear")
-            print(f"Classe selecionada: {nome_classe}")
-            print(f"Atributo preferível: {atributo_classe}\n")
-
+    
+    os.system("cls" or "clear")
+    print(f"Resultado final dos dados para a classe {nome_classe}:")
+    for i, valor in enumerate(dados_matriz, start=1):
+        print(f"Dado {i}: {valor}")
 
     return dados_matriz
