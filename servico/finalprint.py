@@ -17,7 +17,7 @@ def print_final (conn, id_personagem):
             lista_atributos = ["Força", "Destreza", "Constituição", "Inteligência", "Sabedoria", "Carisma"]
             valores = cursor.fetchall ()
 
-            os.system('cls' or 'clear')
+           
             print("-" * 120)
 
             for linha in valores:
