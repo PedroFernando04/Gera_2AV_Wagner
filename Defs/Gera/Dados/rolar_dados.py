@@ -1,49 +1,45 @@
-from Defs.Gera.Personagem.personagem import criacao
+import random
 import os
-from Defs.Gera.BD.finalprint import print_final
-from Defs.Gera.BD.exclusao import excluir_perso
 
-def voltar_menu():
-    input('\n[Pressione qualquer botão para voltar ao menu]\n')
-    os.system('cls' or 'clear')
+def rolar_dados(qnt_dados, nome_classe, atributo_classe):
+    dados_matriz = []
 
-def menu_login(conn, id_usuario):
-    while True:
-        print("Selecione o que deseja fazer:\n")
-        print("1 - Criar personagem")
-        print("2 - Visualizar personagem")
-        print("3 - Deletar personagem")
-        print("4 - Sair\n")
-        opc = input()
-        os.system("cls" or "clear")
-        match(opc):
-            case '1':
-                id_personagem = criacao(conn, id_usuario)
-                print_final(conn, id_personagem)
-                voltar_menu()
-            case '2':
-                cursor = conn.cursor()
-                query = f"SELECT * FROM gera.personagens where id_usuario = {id_usuario}"
-                cursor.execute(query)
-                row = cursor.fetchall()
-                conn.commit()
+    for re_rolagens in range(0, 3):
+        
+        if re_rolagens > 0:
+            soma_re_rolagens = 6 * re_rolagens
+        else:
+            soma_re_rolagens = 0
 
-                if row:
-                    os.system ("cls" or "clear")
-                    for i in range(0, len(row)):
-                        print_final(conn, row[i][0])
-                    voltar_menu()
-
-                else:
-                    print("Nenhum usuário encontrado!")
-                    voltar_menu()
-
-            case '3':
-                excluir_perso(conn,id_usuario)
-                voltar_menu()
-            case '4':
-                print("Finalizando")
-                break
-            case _:
-                os.system('cls' or 'clear')
+        print(f"Classe: {nome_classe}\nAtributo: {atributo_classe}")
+        print("\nResultado dos dados: \n")
+        for j in range(0, qnt_dados):
+            dados_matriz.append(random.randint(1, 20))
+            print(f"Dado {j + 1}: {dados_matriz[j + soma_re_rolagens]}")
+        
+        print(f"\nDeseja rerolar? você tem {3 - re_rolagens} chances")
+        print("1 - Sim\n2 - Não\n")
+        
+        while True:
+            try:
+                rerolar = int(input())
+                if rerolar != 1 and rerolar != 2:
+                    raise ValueError
+            except(ValueError):
                 print("Valor inválido!")
+                print(f"Deseja rerolar? você tem {3 - re_rolagens}")
+                print("1 - Sim\n2 - Não")
+            else:
+                os.system("cls" or "clear")
+                break
+        
+        if re_rolagens == 2 or rerolar == 2:
+            break
+
+        else:
+            os.system("cls" or "clear")
+            print(f"Classe selecionada: {nome_classe}")
+            print(f"Atributo preferível: {atributo_classe}\n")
+
+
+    return dados_matriz
