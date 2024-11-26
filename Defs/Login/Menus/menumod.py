@@ -1,6 +1,6 @@
-from servico.moderador import *
-from servico.menu_login import *
-from servico.exclusao import exluir_mod
+from Defs.Gera.BD.moderador import *
+from Defs.Login.Menus import *
+from Defs.Gera.BD.exclusao import exluir_mod
 import os
 
 
