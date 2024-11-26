@@ -1,44 +1,49 @@
-import random
+from servico.personagem import criacao
 import os
+from servico.finalprint import print_final
+from servico.exclusao import excluir_perso
 
-def rolar_dados(qnt_dados, nome_classe, atributo_classe):
-    dados_matriz = []  # Armazenar os resultados finais
-    
-    print(f"Classe: {nome_classe}\nAtributo: {atributo_classe}")
-    
-    for re_rolagens in range(3):  # Permite até 3 rerrolagens
-        ultima_rolagem = [random.randint(1, 20) for _ in range(qnt_dados)]
-        
-        print("\nResultado dos dados:\n")
-        for i, valor in enumerate(ultima_rolagem, start=1):
-            print(f"Dado {i}: {valor}")
-        
-        # Atualiza os dados_matriz com o último resultado
-        dados_matriz = ultima_rolagem[:]
-        
-        # Se for a última tentativa de rerolar, avisa o usuário e não pergunta mais
-        if re_rolagens == 2:  
-            print("\nVocê atingiu o limite de rerrolagens.")
-            break
+def voltar_menu():
+    input('\n[Pressione qualquer botão para voltar ao menu]\n')
+    os.system('cls' or 'clear')
 
-        print(f"\nDeseja rerolar? Você tem {2 - re_rolagens} chance(s) restante(s).")
-        print("1 - Sim\n2 - Não")
-        
-        while True:
-            try:
-                rerolar = int(input("Escolha uma opção: "))
-                if rerolar not in [1, 2]:
-                    raise ValueError
-            except ValueError:
-                print("\nOpção inválida! Tente novamente.")
-            else:
+def menu_login(conn, id_usuario):
+    while True:
+        print("Selecione o que deseja fazer:\n")
+        print("1 - Criar personagem")
+        print("2 - Visualizar personagem")
+        print("3 - Deletar personagem")
+        print("4 - Sair\n")
+        opc = input()
+        os.system("cls" or "clear")
+        match(opc):
+            case '1':
+                id_personagem = criacao(conn, id_usuario)
+                print_final(conn, id_personagem)
+                voltar_menu()
+            case '2':
+                cursor = conn.cursor()
+                query = f"SELECT * FROM gera.personagens where id_usuario = {id_usuario}"
+                cursor.execute(query)
+                row = cursor.fetchall()
+                conn.commit()
+
+                if row:
+                    os.system ("cls" or "clear")
+                    for i in range(0, len(row)):
+                        print_final(conn, row[i][0])
+                    voltar_menu()
+
+                else:
+                    print("Nenhum usuário encontrado!")
+                    voltar_menu()
+
+            case '3':
+                excluir_perso(conn,id_usuario)
+                voltar_menu()
+            case '4':
+                print("Finalizando")
                 break
-        
-        if rerolar == 2:  # Se o usuário escolher "Não", interrompe o laço
-            break
-        os.system('cls' or 'clear')
-    print(f"Resultado final dos dados para a classe {nome_classe}:")
-    for i, valor in enumerate(dados_matriz, start=1):
-        print(f"Dado {i}: {valor}")
-    pausa = input("Digite qualque coisa para continuar")
-    return dados_matriz
+            case _:
+                os.system('cls' or 'clear')
+                print("Valor inválido!")
