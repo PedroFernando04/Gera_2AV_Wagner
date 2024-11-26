@@ -87,6 +87,7 @@ def escolha_classe(conn):
             if 1 <= opc <= len(classes):
                 os.system('cls' or 'clear')
                 classe_nome, atributo_principal = classes[opc - 1]
+                print("-" * 120)
                 print(f"Classe {classe_nome} foi selecionada!")
                 print(f"Seu atributo principal é {atributo_principal}!")
                 print("-" * 120)
@@ -94,6 +95,10 @@ def escolha_classe(conn):
             else:
                 os.system('cls' or 'clear')
                 print("Opção inválida!")
+                print("-" * 120)
+                print(f"Classe {classe_nome} foi selecionada!")
+                print(f"Seu atributo principal é {atributo_principal}!")
+                print("-" * 120)
         except ValueError:
             os.system('cls' or 'clear')
             print("\nValor inválido! Informe um dos valores presentes na tabela.\n")
@@ -178,6 +183,7 @@ def calculo_vida(conn, id_atributo, opc):
     print(f"{dadovida} (dado de vida) + {const} (Constituição)")
     print(f"Logo, o PV do personagem é de: {vida}\n")
     input()
+    os.system('cls' or 'clear')
     return vida
 
 def rolar_dados_personagem(nome_classe, nome_atributo):
