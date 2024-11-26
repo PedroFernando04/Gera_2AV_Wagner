@@ -1,3 +1,4 @@
+import os
 def excluir_perso(conn, id_usuario):
     try:
         with conn.cursor() as cursor:
@@ -26,7 +27,7 @@ def excluir_perso(conn, id_usuario):
                 """
                 cursor.execute(query, (id_usuario, f"%{nome_perso}%"))
                 personagens = cursor.fetchall()
-
+                os.system("cls" or "clear")
                 if personagens:
                     print("\nPersonagens encontrados:")
                     print("-" * 120)
@@ -67,7 +68,7 @@ def exluir_mod(conn):
             query = "SELECT nome, classe FROM gera.personagens"
             cursor.execute(query)
             personagens = cursor.fetchall()
-            
+            os.system("cls" or "clear")
             if personagens:
                 for nome, classe in personagens:
                     print(f"Nome: {nome} | Classe: {classe}")
