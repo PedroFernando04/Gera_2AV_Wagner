@@ -24,11 +24,11 @@ def emailValido(users, conn):
             else:
                 os.system('cls' or 'clear')
                 print('\n[ CADASTRO ]\n')
-                print('\nDigite um email válido!')
+                print('\nFormato inválido!')
         else:
             os.system('cls' or 'clear')
             print('\n[ CADASTRO ]\n')
-            print('\nDigite um email válido!')
+            print('\nFormato inválido!')
 
 #Validação da senha
 def senhaValida():
