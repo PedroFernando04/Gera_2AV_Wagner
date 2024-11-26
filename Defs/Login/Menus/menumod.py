@@ -6,18 +6,18 @@ import os
 
 def verifmod(conn, id_usuario):
     try:
-        # Corrigido o erro de digitação de cursor para cursor
+       
         with conn.cursor() as cursor:
             query = """SELECT mod FROM gera.usuarios WHERE id_usuario = %s"""
             cursor.execute(query, (id_usuario,))
-            resultado = cursor.fetchone()  # Recupera o resultado da consulta
+            resultado = cursor.fetchone()  
             
             if resultado:
-                mod = resultado[0]  # O campo "mod" é retornado na primeira posição da tupla
-                return mod  # Retorna o valor de "mod", que será True ou False
+                mod = resultado[0] 
+                return mod 
             else:
                 print("Usuário não encontrado!")
-                return False  # Caso não encontre o usuário, retorna False
+                return False  
     except Exception as e:
         print(f"Erro ao verificar o moderador: {e}")
         return False
