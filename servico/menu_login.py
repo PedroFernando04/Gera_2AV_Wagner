@@ -15,7 +15,7 @@ def menu_login(conn, id_usuario):
         print("3 - Deletar personagem")
         print("4 - Sair\n")
         opc = input()
-        
+        os.system("cls" or "clear")
         match(opc):
             case '1':
                 id_personagem = criacao(conn, id_usuario)
@@ -29,7 +29,7 @@ def menu_login(conn, id_usuario):
                 conn.commit()
 
                 if row:
-                    os.system('cls' or 'clear')
+                    os.system ("cls" or "clear")
                     for i in range(0, len(row)):
                         print_final(conn, row[i][0])
                     voltar_menu()
@@ -45,4 +45,5 @@ def menu_login(conn, id_usuario):
                 print("Finalizando")
                 break
             case _:
+                os.system('cls' or 'clear')
                 print("Valor inválido!")
