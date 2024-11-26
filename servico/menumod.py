@@ -1,53 +1,84 @@
-from servicos.moderador import *
-from servico.exclusao import exluir_mod
+import os
 
-def verifmod(conn, id_usuario):
-    try:
-        # Corrigido o erro de digitação de cursor para cursor
-        with conn.cursor() as cursor:
-            query = """SELECT mod FROM gera.usuarios WHERE id_usuario = %s"""
-            cursor.execute(query, (id_usuario,))
-            resultado = cursor.fetchone()  # Recupera o resultado da consulta
-            
-            if resultado:
-                mod = resultado[0]  # O campo "mod" é retornado na primeira posição da tupla
-                return mod  # Retorna o valor de "mod", que será True ou False
-            else:
-                print("Usuário não encontrado!")
-                return False  # Caso não encontre o usuário, retorna False
-    except Exception as e:
-        print(f"Erro ao verificar o moderador: {e}")
-        return False
-    
-def menumod (conn):
-        try:
-             with conn.cursor() as cursor:
-                print("Bem-vindo, moderador do Gera Ficha!\n")
-                while True:
-                    print("O que você deseja?")
-                    print("1 - Visualizar itens")
-                    print("2 - Inserir itens")
-                    print("3 - Alterar itens")
-                    print("4 - Deletar personagem")
-                    print("5 - Buscar personagem")
-                    print("6 - Sair")
-
-                    opc = int(input("O que gostaria de fazer: "))
-
-                    match opc:
-                        case 1:
-                            visualizar_dados(conn)
-                        case 2:
-                            inserir_dados(conn)
-                        case 3:
-                            alterar_dados(conn)
-                        case 4:
-                            exluir_mod(conn) 
-                        case 5:
-                            buscarperso(conn)
-                        case 6:
+#Validação de Emails
+def emailValido(users, conn):
+    while True:
+        email = input('\nDigite um email Válido: ')
+        if '@' in email:
+            usuario, dominio = email.split('@', 1)
+            if usuario and dominio and '.' in dominio:
+                email_existente = email_bd(conn, email)
+                if email_existente:
+                    print('\nEsse email já foi cadastrado.')
+                else:
+                    return email
+                """#verificar se o email ja está cadastrado na lista(no proprio gera)
+                    email_ja_cadastrado = False
+                    for user in users:
+                        if email == user.email:
+                            print('\nEsse email já foi cadastrado.')
+                            email_ja_cadastrado = True
                             break
-                        case _:
-                            print("Opção inválida. Tente novamente.")
-        except Exception as e:
-            print (e)
+                    if not email_ja_cadastrado:
+                        return email"""
+            else:
+                os.system('cls' or 'clear')
+                print('\n[ CADASTRO ]\n')
+                print('\nFormato inválido!')
+        else:
+            os.system('cls' or 'clear')
+            print('\n[ CADASTRO ]\n')
+            print('\nFormato inválido!')
+
+#Validação da senha
+def senhaValida():
+    while True:
+        senha = input ('Digite a sua senha: ')
+        senha2 = input ('Digite a sua senha novamente:')
+        if senha == senha2:
+            return senha
+        else:
+            print('Senhas não correspondentes, digite novamente\n')
+
+#Validação do login
+def loginValido(email, senha, conn):
+
+    id_usuario = email_bd(conn, email)
+
+    try:
+        if id_usuario and senha_bd(conn, senha, email):
+            print('Usuário válido\n')
+            return id_usuario
+        else:
+            pass
+    except Exception as e:
+        print(e)
+        print ('Usuário e senha não encontrado')
+        input()
+        return False
+
+
+#Email presente no banco
+
+def email_bd(conn, email):
+    cursor = conn.cursor()
+    query = f"SELECT * FROM gera.usuarios WHERE email = '{email}'"
+    cursor.execute(query)
+    conn.commit()
+    usuario = cursor.fetchall()
+    
+    #retorna o id do usuario
+    if usuario:
+        return usuario[0][0]
+    else:
+        return False
+
+def senha_bd(conn, senha, email):
+    cursor = conn.cursor()
+    query = f"SELECT senha FROM gera.usuarios WHERE senha = '{senha}' and email = '{email}'"
+    cursor.execute(query)
+    conn.commit()
+    senha_existente = cursor.fetchall()
+
+    return senha_existente
+
