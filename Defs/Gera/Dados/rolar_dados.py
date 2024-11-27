@@ -35,7 +35,8 @@ def rolar_dados(qnt_dados, nome_classe, atributo_classe):
             else:
                 break
         
-        if rerolar == 2:  # Se o usuário escolher "Não", interrompe o laço
+        if rerolar == 2:
+            os.system('cls' or 'clear')  # Se o usuário escolher "Não", interrompe o laço
             break
         os.system('cls' or 'clear')
     print(f"Resultado final dos dados para a classe {nome_classe}:")
