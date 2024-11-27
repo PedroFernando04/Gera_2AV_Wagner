@@ -1,6 +1,6 @@
 from Defs.Login.Validacao.validacao import emailValido, senhaValida, loginValido
 import os
-
+from getpass import getpass
 
 class Cadastro:
     def __init__(self, email, senha):
@@ -9,17 +9,17 @@ class Cadastro:
 
 usuarios = []
 
-def cadastrar (conn):
+def cadastrar(conn):
     os.system('cls' or 'clear')
 
     print('\n[ CADASTRO ]\n')
     email = emailValido(usuarios, conn)
     senha = senhaValida()
     
-    #colocar na lista do gera
-    usuarios.append(Cadastro(email,senha))
+    # Colocar na lista do gera
+    usuarios.append(Cadastro(email, senha))
 
-    #colocar no bd
+    # Colocar no BD
     try:
         cursor = conn.cursor()
         query = f"INSERT INTO gera.usuarios(email, senha, mod) VALUES ('{email}', '{senha}', 'false')"
@@ -30,13 +30,12 @@ def cadastrar (conn):
         print(e)
         input()
 
-
-def logar (conn):
+def logar(conn):
     os.system('cls' or 'clear')
     
     print('\n[ LOGIN ]\n')
-    nome_login = input ('Digite seu Email: ')
-    senha_login = input ('Digite sua senha: ')
+    nome_login = input('Digite seu Email: ')
+    senha_login = getpass('Digite sua senha: ')
 
     id_usuario = loginValido(nome_login, senha_login, conn)
     
@@ -45,6 +44,3 @@ def logar (conn):
     else:
         print('\nUsuário ou senha inválido!')
         return False
-
-
-
