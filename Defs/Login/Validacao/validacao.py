@@ -1,9 +1,11 @@
 import os
+import bcrypt
+from getpass import getpass
 
-#Validação de Emails
+# Validação de Emails
 def emailValido(users, conn):
     while True:
-        email = input('\nDigite um email Válido: ')
+        email = input('\nDigite um email válido: ')
         if '@' in email:
             usuario, dominio = email.split('@', 1)
             if usuario and dominio and '.' in dominio:
@@ -12,73 +14,63 @@ def emailValido(users, conn):
                     print('\nEsse email já foi cadastrado.')
                 else:
                     return email
-                """#verificar se o email ja está cadastrado na lista(no proprio gera)
-                    email_ja_cadastrado = False
-                    for user in users:
-                        if email == user.email:
-                            print('\nEsse email já foi cadastrado.')
-                            email_ja_cadastrado = True
-                            break
-                    if not email_ja_cadastrado:
-                        return email"""
             else:
                 os.system('cls' or 'clear')
-                print('\n[ CADASTRO ]\n')
-                print('\nFormato inválido!')
+                print('\n[ CADASTRO ]\nFormato inválido!')
         else:
             os.system('cls' or 'clear')
-            print('\n[ CADASTRO ]\n')
-            print('\nFormato inválido!')
+            print('\n[ CADASTRO ]\nFormato inválido!')
 
-#Validação da senha
+# Validação da senha
 def senhaValida():
     while True:
-        senha = input ('Digite a sua senha: ')
-        senha2 = input ('Digite a sua senha novamente:')
+        senha = getpass('Digite a sua senha: ')
+        senha2 = getpass('Digite a sua senha novamente: ')
         if senha == senha2:
-            return senha
+            # Garantindo que a senha seja convertida para bytes antes de gerar o hash
+            hashed = bcrypt.hashpw(senha.encode('utf-8'), bcrypt.gensalt())
+            return hashed.decode('utf-8')  # Convertendo o hash para string
         else:
             print('Senhas não correspondentes, digite novamente\n')
 
-#Validação do login
+# Validação do login
 def loginValido(email, senha, conn):
-
     id_usuario = email_bd(conn, email)
-
     try:
         if id_usuario and senha_bd(conn, senha, email):
             print('Usuário válido\n')
             return id_usuario
         else:
-            pass
+            print('E-mail ou senha inválidos.\n')
+            return False
     except Exception as e:
-        print(e)
-        print ('Usuário e senha não encontrado')
-        input()
+        print(f"Erro: {e}")
         return False
 
-
-#Email presente no banco
-
+# Email presente no banco
 def email_bd(conn, email):
     cursor = conn.cursor()
-    query = f"SELECT * FROM gera.usuarios WHERE email = '{email}'"
-    cursor.execute(query)
-    conn.commit()
-    usuario = cursor.fetchall()
+    query = "SELECT id_usuario FROM gera.usuarios WHERE email = %s"
+    cursor.execute(query, (email,))
+    usuario = cursor.fetchone()
     
-    #retorna o id do usuario
+    # Retorna o id do usuário
     if usuario:
-        return usuario[0][0]
+        return usuario[0]
     else:
         return False
 
+# Verificação da senha no banco
 def senha_bd(conn, senha, email):
     cursor = conn.cursor()
-    query = f"SELECT senha FROM gera.usuarios WHERE senha = '{senha}' and email = '{email}'"
-    cursor.execute(query)
-    conn.commit()
-    senha_existente = cursor.fetchall()
+    query = "SELECT senha FROM gera.usuarios WHERE email = %s"
+    cursor.execute(query, (email,))
+    resultado = cursor.fetchone()
 
-    return senha_existente
-
+    if resultado:
+        senha_hash = resultado[0]
+        if isinstance(senha_hash, memoryview):  # Tratar retorno como memoryview
+            senha_hash = senha_hash.tobytes()
+        # Verificando senha com bcrypt
+        return bcrypt.checkpw(senha.encode('utf-8'), senha_hash)
+    return False
