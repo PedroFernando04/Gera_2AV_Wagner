@@ -35,7 +35,7 @@ def menu_login(conn, id_usuario):
                     voltar_menu()
 
                 else:
-                    print("Nenhum usuário encontrado!")
+                    print("Nenhum personagem encontrado!")
                     voltar_menu()
 
             case '3':
