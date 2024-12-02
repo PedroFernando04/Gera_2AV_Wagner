@@ -23,8 +23,8 @@ def menu_login(conn, id_usuario):
                 voltar_menu()
             case '2':
                 cursor = conn.cursor()
-                query = f"SELECT * FROM gera.personagens where id_usuario = {id_usuario}"
-                cursor.execute(query)
+                query = "SELECT * FROM gera.personagens where id_usuario = %s"
+                cursor.execute(query,(id_usuario,)
                 row = cursor.fetchall()
                 conn.commit()
 
