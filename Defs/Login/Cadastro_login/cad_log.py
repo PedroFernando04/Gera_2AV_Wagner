@@ -22,7 +22,7 @@ def cadastrar(conn):
     # Colocar no BD
     try:
         cursor = conn.cursor()
-        query = "INSERT INTO gera.usuarios(email, senha, mod) VALUES ('%s', '%s', 'false')"
+        query = "INSERT INTO gera.usuarios(email, senha, mod) VALUES (%s, %s, 'false')"
         cursor.execute(query, (email, senha))
         conn.commit()
         return usuarios
